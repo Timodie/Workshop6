@@ -11,12 +11,17 @@ app.listen(3000, function () {
 console.log('Example app listening on port 3000!');
 });
 
-var util = require('./util.js');
-var reverseString = util.reverseString ;
-
+// You run the server from `server`, so `../client/build` is `server/../client/build`.
+// '..' means "go up one directory", so this translates into `client/build`!
+app.use(express.static('../client/build'));
+  
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.text());
+/*
+ *Reverse functions commented out for now
+var util = require('./util.js');
+var reverseString = util.reverseString ;
 
 // Handle POST /reverse [data]
 app.post('/reverse', function (req, res) {
@@ -30,4 +35,4 @@ res.send(reversed);
 // POST did not contain a string. Send an error code back!
 res.status(400).end();
 }
-});
+});*/
